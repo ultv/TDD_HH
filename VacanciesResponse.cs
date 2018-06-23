@@ -8,6 +8,7 @@ namespace TDD_HH
 {
     class VacanciesResponse
     {
-        public VacancyInfo [] Items { get; set; }        
+        public VacancyInfo [] Items { get; set; }
+        public int Found { get; set; }
     }
 }
