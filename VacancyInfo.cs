@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TDD_HH
 {
-    class NameInfo
+    class VacancyInfo
     {
         public string Name { get; set; }
+        public VacancySalary Salary { get; set; }
+        public string Alternate_url { get; set; }
     }
 }

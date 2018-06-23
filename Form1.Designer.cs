@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.buttonGetVacanties = new System.Windows.Forms.Button();
-            this.textBoxVacncies = new System.Windows.Forms.TextBox();
+            this.richTextBoxVacancies = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // buttonGetVacanties
@@ -42,32 +42,33 @@
             this.buttonGetVacanties.UseVisualStyleBackColor = true;
             this.buttonGetVacanties.Click += new System.EventHandler(this.buttonGetVacanties_Click);
             // 
-            // textBoxVacncies
+            // richTextBoxVacancies
             // 
-            this.textBoxVacncies.Location = new System.Drawing.Point(46, 40);
-            this.textBoxVacncies.Multiline = true;
-            this.textBoxVacncies.Name = "textBoxVacncies";
-            this.textBoxVacncies.Size = new System.Drawing.Size(692, 325);
-            this.textBoxVacncies.TabIndex = 1;
+            this.richTextBoxVacancies.Location = new System.Drawing.Point(46, 30);
+            this.richTextBoxVacancies.Name = "richTextBoxVacancies";
+            this.richTextBoxVacancies.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBoxVacancies.Size = new System.Drawing.Size(702, 320);
+            this.richTextBoxVacancies.TabIndex = 2;
+            this.richTextBoxVacancies.Text = "";
+            this.richTextBoxVacancies.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxVacancies_LinkClicked);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBoxVacncies);
+            this.Controls.Add(this.richTextBoxVacancies);
             this.Controls.Add(this.buttonGetVacanties);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button buttonGetVacanties;
-        private System.Windows.Forms.TextBox textBoxVacncies;
+        private System.Windows.Forms.RichTextBox richTextBoxVacancies;
     }
 }
 

@@ -41,9 +41,27 @@ namespace TDD_HH
 
             for(int i = 0; i < 20; i++)
             {
-                textBoxVacncies.AppendText(vacanciesResponse.Items[i].Name + "\n");
+                richTextBoxVacancies.AppendText($"{vacanciesResponse.Items[i].Name}\n");                
+
+                if (vacanciesResponse.Items[i].Salary != null)
+                {
+                    richTextBoxVacancies.AppendText($"{vacanciesResponse.Items[i].Salary.SalaryFormat()}\n");
+                }
+                else
+                {
+                    richTextBoxVacancies.AppendText("з/п не указана\n");
+                }
+                    
+                richTextBoxVacancies.AppendText($"{vacanciesResponse.Items[i].Alternate_url}\n");
+                richTextBoxVacancies.AppendText("\n");
+                
             }
             
+        }
+
+        private void richTextBoxVacancies_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.LinkText);
         }
     }
 }
