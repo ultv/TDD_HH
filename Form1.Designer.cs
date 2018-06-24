@@ -28,25 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonGetVacanties = new System.Windows.Forms.Button();
             this.richTextBoxVacancies = new System.Windows.Forms.RichTextBox();
             this.labelCountVacancies = new System.Windows.Forms.Label();
-            this.labelCountPrint = new System.Windows.Forms.Label();
-            this.textBoxCountPrint = new System.Windows.Forms.TextBox();
             this.checkBoxUlyanovsk = new System.Windows.Forms.CheckBox();
             this.checkBoxIT = new System.Windows.Forms.CheckBox();
             this.checkBoxSimbirSoft = new System.Windows.Forms.CheckBox();
+            this.buttonNextPage = new System.Windows.Forms.Button();
+            this.buttonPrevPage = new System.Windows.Forms.Button();
+            this.labelSelectVacancies = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // buttonGetVacanties
-            // 
-            this.buttonGetVacanties.Location = new System.Drawing.Point(173, 387);
-            this.buttonGetVacanties.Name = "buttonGetVacanties";
-            this.buttonGetVacanties.Size = new System.Drawing.Size(174, 23);
-            this.buttonGetVacanties.TabIndex = 0;
-            this.buttonGetVacanties.Text = "Получить вакансии";
-            this.buttonGetVacanties.UseVisualStyleBackColor = true;
-            this.buttonGetVacanties.Click += new System.EventHandler(this.buttonGetVacanties_Click);
             // 
             // richTextBoxVacancies
             // 
@@ -63,87 +53,103 @@
             this.labelCountVacancies.AutoSize = true;
             this.labelCountVacancies.Location = new System.Drawing.Point(511, 33);
             this.labelCountVacancies.Name = "labelCountVacancies";
-            this.labelCountVacancies.Size = new System.Drawing.Size(91, 13);
+            this.labelCountVacancies.Size = new System.Drawing.Size(97, 13);
             this.labelCountVacancies.TabIndex = 3;
-            this.labelCountVacancies.Text = "Всего вакансий:";
-            // 
-            // labelCountPrint
-            // 
-            this.labelCountPrint.AutoSize = true;
-            this.labelCountPrint.Location = new System.Drawing.Point(511, 73);
-            this.labelCountPrint.Name = "labelCountPrint";
-            this.labelCountPrint.Size = new System.Drawing.Size(75, 13);
-            this.labelCountPrint.TabIndex = 4;
-            this.labelCountPrint.Text = "Выводить по:";
-            // 
-            // textBoxCountPrint
-            // 
-            this.textBoxCountPrint.Location = new System.Drawing.Point(514, 109);
-            this.textBoxCountPrint.Name = "textBoxCountPrint";
-            this.textBoxCountPrint.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCountPrint.TabIndex = 5;
-            this.textBoxCountPrint.Text = "100";
+            this.labelCountVacancies.Text = "Всего вакансий : ";
             // 
             // checkBoxUlyanovsk
             // 
             this.checkBoxUlyanovsk.AutoSize = true;
-            this.checkBoxUlyanovsk.Location = new System.Drawing.Point(514, 163);
+            this.checkBoxUlyanovsk.Location = new System.Drawing.Point(514, 69);
             this.checkBoxUlyanovsk.Name = "checkBoxUlyanovsk";
             this.checkBoxUlyanovsk.Size = new System.Drawing.Size(82, 17);
             this.checkBoxUlyanovsk.TabIndex = 6;
             this.checkBoxUlyanovsk.Text = "Ульяновск";
             this.checkBoxUlyanovsk.UseVisualStyleBackColor = true;
+            this.checkBoxUlyanovsk.CheckedChanged += new System.EventHandler(this.checkBoxUlyanovsk_CheckedChanged);
             // 
             // checkBoxIT
             // 
             this.checkBoxIT.AutoSize = true;
-            this.checkBoxIT.Location = new System.Drawing.Point(514, 202);
+            this.checkBoxIT.Location = new System.Drawing.Point(514, 105);
             this.checkBoxIT.Name = "checkBoxIT";
             this.checkBoxIT.Size = new System.Drawing.Size(36, 17);
             this.checkBoxIT.TabIndex = 7;
             this.checkBoxIT.Text = "IT";
             this.checkBoxIT.UseVisualStyleBackColor = true;
+            this.checkBoxIT.CheckedChanged += new System.EventHandler(this.checkBoxIT_CheckedChanged);
             // 
             // checkBoxSimbirSoft
             // 
             this.checkBoxSimbirSoft.AutoSize = true;
-            this.checkBoxSimbirSoft.Location = new System.Drawing.Point(514, 240);
+            this.checkBoxSimbirSoft.Location = new System.Drawing.Point(514, 139);
             this.checkBoxSimbirSoft.Name = "checkBoxSimbirSoft";
             this.checkBoxSimbirSoft.Size = new System.Drawing.Size(91, 17);
             this.checkBoxSimbirSoft.TabIndex = 8;
             this.checkBoxSimbirSoft.Text = "СимбирСофт";
             this.checkBoxSimbirSoft.UseVisualStyleBackColor = true;
+            this.checkBoxSimbirSoft.CheckedChanged += new System.EventHandler(this.checkBoxSimbirSoft_CheckedChanged);
+            // 
+            // buttonNextPage
+            // 
+            this.buttonNextPage.Location = new System.Drawing.Point(291, 387);
+            this.buttonNextPage.Name = "buttonNextPage";
+            this.buttonNextPage.Size = new System.Drawing.Size(180, 23);
+            this.buttonNextPage.TabIndex = 9;
+            this.buttonNextPage.Text = "Следующая страница";
+            this.buttonNextPage.UseVisualStyleBackColor = true;
+            this.buttonNextPage.Click += new System.EventHandler(this.buttonNextPage_Click);
+            // 
+            // buttonPrevPage
+            // 
+            this.buttonPrevPage.Enabled = false;
+            this.buttonPrevPage.Location = new System.Drawing.Point(69, 387);
+            this.buttonPrevPage.Name = "buttonPrevPage";
+            this.buttonPrevPage.Size = new System.Drawing.Size(180, 23);
+            this.buttonPrevPage.TabIndex = 10;
+            this.buttonPrevPage.Text = "Предыдущая страница";
+            this.buttonPrevPage.UseVisualStyleBackColor = true;
+            this.buttonPrevPage.Click += new System.EventHandler(this.buttonPrevPage_Click);
+            // 
+            // labelSelectVacancies
+            // 
+            this.labelSelectVacancies.AutoSize = true;
+            this.labelSelectVacancies.Enabled = false;
+            this.labelSelectVacancies.Location = new System.Drawing.Point(511, 179);
+            this.labelSelectVacancies.Name = "labelSelectVacancies";
+            this.labelSelectVacancies.Size = new System.Drawing.Size(189, 13);
+            this.labelSelectVacancies.TabIndex = 11;
+            this.labelSelectVacancies.Text = "Критериям поиска соответствуют : ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelSelectVacancies);
+            this.Controls.Add(this.buttonPrevPage);
+            this.Controls.Add(this.buttonNextPage);
             this.Controls.Add(this.checkBoxSimbirSoft);
             this.Controls.Add(this.checkBoxIT);
             this.Controls.Add(this.checkBoxUlyanovsk);
-            this.Controls.Add(this.textBoxCountPrint);
-            this.Controls.Add(this.labelCountPrint);
             this.Controls.Add(this.labelCountVacancies);
             this.Controls.Add(this.richTextBoxVacancies);
-            this.Controls.Add(this.buttonGetVacanties);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Вакансии сайта hh.ru";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonGetVacanties;
         private System.Windows.Forms.RichTextBox richTextBoxVacancies;
         private System.Windows.Forms.Label labelCountVacancies;
-        private System.Windows.Forms.Label labelCountPrint;
-        private System.Windows.Forms.TextBox textBoxCountPrint;
         private System.Windows.Forms.CheckBox checkBoxUlyanovsk;
         private System.Windows.Forms.CheckBox checkBoxIT;
         private System.Windows.Forms.CheckBox checkBoxSimbirSoft;
+        private System.Windows.Forms.Button buttonNextPage;
+        private System.Windows.Forms.Button buttonPrevPage;
+        private System.Windows.Forms.Label labelSelectVacancies;
     }
 }
 
