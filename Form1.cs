@@ -15,36 +15,37 @@ namespace TDD_HH
 {
     public partial class Form1 : Form
     {
-        public int NumberVacancy { get; set; }
-        string AllVacancies = "https://api.hh.ru/vacancies";
-        public string Ulyanovsk = "";
-        public string IT = "";
-        public string SimbirSoft = "";
-        VacanciesResponse vacanciesResponse;
-        int numPage = 0;
-        int found = 0;
+        int numberVacancy = 0;
+        int foundVacancies = 0;
+        int numPage = 0;        
         int numChecked = 0;
+        string allVacancies = "https://api.hh.ru/vacancies";
+        string Ulyanovsk = "";
+        string IT = "";
+        string SimbirSoft = "";                
+        VacanciesResponse vacanciesResponse;
 
         public Form1()
         {
             InitializeComponent();
+
             vacanciesResponse = CreateRequest(numPage);
-
-            found = vacanciesResponse.Found;
-            labelCountVacancies.Text += found.ToString();
+            foundVacancies = vacanciesResponse.Found;
+            labelCountVacancies.Text += foundVacancies.ToString();
             PrintInfo();
-
         }
         
-
+        /// <summary>
+        /// Вывод списка вакансий.
+        /// </summary>
         private void PrintInfo()
         {
-            int count = 20;
-            found = vacanciesResponse.Found;            
+            int count = vacanciesResponse.Per_page;
+            foundVacancies = vacanciesResponse.Found;            
 
-            if (found <= count)
+            if (foundVacancies <= count)
             {
-                count = found;
+                count = foundVacancies;
                 buttonNextPage.Enabled = false;
             }
             else
@@ -52,11 +53,17 @@ namespace TDD_HH
                 buttonNextPage.Enabled = true;
             }
 
+            if(vacanciesResponse.Items.Count() < count)
+            {
+                count = vacanciesResponse.Items.Count();
+                buttonNextPage.Enabled = false;
+            }
+
             for (int i = 0; i < count; i++)
             {
-                NumberVacancy++;
+                numberVacancy++;
 
-                richTextBoxVacancies.AppendText($"{NumberVacancy}. {vacanciesResponse.Items[i].Name}\n");
+                richTextBoxVacancies.AppendText($"{numberVacancy}. {vacanciesResponse.Items[i].Name}\n");
 
                 if (vacanciesResponse.Items[i].Salary != null)
                 {
@@ -76,12 +83,13 @@ namespace TDD_HH
         }
 
         /// <summary>
-        /// Формирование адреса по параметрам поиска.
+        /// Формирование адреса с добавлением параметров.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="page">Принимает номер запрашиваемой страницы.</param>
+        /// <returns>Возвращает адрес с передаваемыми параметрами.</returns>        
         private string CreateUrl(int page)
         {
-            string url = AllVacancies + "?page=" + page.ToString() + Ulyanovsk + IT + SimbirSoft;                 
+            string url = allVacancies + "?page=" + page.ToString() + Ulyanovsk + IT + SimbirSoft;                 
 
             return url;
         }
@@ -124,6 +132,11 @@ namespace TDD_HH
             System.Diagnostics.Process.Start(e.LinkText);
         }
 
+        /// <summary>
+        /// Нажатие на кнопку "Следующая страница".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNextPage_Click(object sender, EventArgs e)
         {
             richTextBoxVacancies.Clear();
@@ -132,10 +145,15 @@ namespace TDD_HH
             PrintInfo();
         }
 
+        /// <summary>
+        /// Нажатие на кнопку "Предыдущая страница."
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonPrevPage_Click(object sender, EventArgs e)
         {
-            NumberVacancy = NumberVacancy - 40;
-            if(NumberVacancy < 1)
+            numberVacancy = numberVacancy - (vacanciesResponse.Per_page + vacanciesResponse.Items.Count());
+            if(numberVacancy < 1)
             {
                 buttonPrevPage.Enabled = false;
             }
@@ -144,7 +162,11 @@ namespace TDD_HH
             PrintInfo();            
         }
 
-
+        /// <summary>
+        /// Изменение критерия поиска "Ульяновск".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBoxUlyanovsk_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = (CheckBox)sender; 
@@ -162,6 +184,11 @@ namespace TDD_HH
             }
         }
 
+        /// <summary>
+        /// Изменение критерия поиска "IT".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBoxIT_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = (CheckBox)sender;
@@ -179,6 +206,11 @@ namespace TDD_HH
             }
         }
 
+        /// <summary>
+        /// Изменение критерия поиска "СимбирСофт".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBoxSimbirSoft_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = (CheckBox)sender;
@@ -196,30 +228,39 @@ namespace TDD_HH
             }
         }
 
+        /// <summary>
+        /// В случае выбора критерия поиска.
+        /// </summary>
         private void SelectInit()
         {            
             richTextBoxVacancies.Clear();
             buttonPrevPage.Enabled = false;
             numPage = 0;
-            NumberVacancy = 0;
+            numberVacancy = 0;
             vacanciesResponse = CreateRequest(numPage);
             labelSelectVacancies.Enabled = true;
             labelSelectVacancies.Text = "Критериям поиска соответствуют : " + vacanciesResponse.Found;
             PrintInfo();
         }
 
+        /// <summary>
+        /// В случае отмены всех критериев поиска.
+        /// </summary>
         private void SelectClear()
         {
             richTextBoxVacancies.Clear();
             buttonPrevPage.Enabled = false;
             numPage = 0;
-            NumberVacancy = 0;
+            numberVacancy = 0;
             vacanciesResponse = CreateRequest(numPage);
             labelSelectVacancies.Text = "Критериям поиска соответствуют : ";
             labelSelectVacancies.Enabled = false;            
             PrintInfo();
         }
 
+        /// <summary>
+        /// Действия при наличии или отсутствии критериев поиска.
+        /// </summary>
         private void InitOrClear()
         {
             numChecked--;

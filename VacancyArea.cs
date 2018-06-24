@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TDD_HH
 {
+    /// <summary>
+    /// Название региона.
+    /// </summary>
     class VacancyArea
     {
         public string Name { get; set; }

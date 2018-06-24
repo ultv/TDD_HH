@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TDD_HH
 {
+    /// <summary>
+    /// Название работадателя.
+    /// </summary>
     class VacancyEmployer
     {
         public string Name { get; set; }
