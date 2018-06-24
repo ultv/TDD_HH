@@ -10,6 +10,8 @@ namespace TDD_HH
     {
         public string Name { get; set; }
         public VacancySalary Salary { get; set; }
+        public VacancyEmployer Employer { get; set; }
+        public VacancyArea Area { get; set; }
         public string Alternate_url { get; set; }
     }
 }

@@ -54,6 +54,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="VacancyArea.cs" />
+    <Compile Include="VacancyEmployer.cs" />
     <Compile Include="VacancySalary.cs" />
     <Compile Include="VacancyInfo.cs" />
     <Compile Include="Program.cs" />

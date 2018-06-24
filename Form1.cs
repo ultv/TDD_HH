@@ -98,6 +98,8 @@ namespace TDD_HH
                         richTextBoxVacancies.AppendText("з/п не указана\n");
                     }
 
+                    richTextBoxVacancies.AppendText($"{vacanciesResponse.Items[i].Employer.Name}\n");
+                    richTextBoxVacancies.AppendText($"{vacanciesResponse.Items[i].Area.Name}\n");
                     richTextBoxVacancies.AppendText($"{vacanciesResponse.Items[i].Alternate_url}\n");
                     richTextBoxVacancies.AppendText("\n");
 
